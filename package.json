@@ -1,0 +1,9 @@
+{
+  "name": "dd-core",
+  "version": "1.0.0",
+  "description": "DanDigital Core",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
