@@ -2,15 +2,18 @@
 
 namespace Admin;
 
-use View;
-use Input;
-use Redirect;
-use Auth;
+use View, Input, Redirect, Auth, User;
 
 class SessionController extends \BaseController {
 
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
+
 	public function create()
 	{
+
 		if (Auth::check())
 		{
 			return Redirect::route('admin.dashboard');
@@ -21,12 +24,19 @@ class SessionController extends \BaseController {
 
 	public function store()
 	{
-		if (Auth::attempt(Input::only('username', 'password')))
+		$input = Input::only('username', 'password');
+
+		if (! $this->user->fill($input)->isValid())
+		{
+			return Redirect::back()->withErrors($this->user->errors)->withInput();
+		}
+
+		if (Auth::attempt($input))
 		{
 			return Redirect::route('admin.dashboard');
 		}
 		
-		return Redirect::back()->withInput();
+		return Redirect::back()->with('login_error', 'Incorrect login details :(')->withInput();
 	}
 
 	public function destroy()

@@ -2,11 +2,10 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>DD Admin</title>
 </head>
 <body>
 
-	<header>
+	<header id="mainHeader">
 		<a href="/admin/logout">Logout</a>
 		<h1>DD Admin</h1>
 	</header>

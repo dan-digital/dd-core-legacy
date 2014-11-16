@@ -1,0 +1,77 @@
+$formBackgroundColor: #333;
+$formSpacing: 10px;
+
+form {
+	background-color: $formBackgroundColor;
+	padding: 0 0 $formSpacing 0;
+	margin: 0 0 15px 0;
+
+	section {
+		padding: $formSpacing $formSpacing 0 $formSpacing;
+	}
+
+	h2 {
+		margin: 0 0 $formSpacing 0;
+		padding: $formSpacing / 2;
+	}
+
+	p {
+		background-color: $formBackgroundColor - 3;
+		border: 1px solid $formBackgroundColor - 6;
+		padding: $formSpacing;
+		margin: 0 0 1px 0;
+	}
+
+	label {
+		display: block;
+		margin: 0 0 $formSpacing 0;
+		color: $fontColour;
+	}
+
+	input, textarea {
+		width: 100%;
+		box-sizing: border-box;
+		border: 1px solid $formBackgroundColor - 18;
+		outline: none;
+		padding: $formSpacing;
+		border-radius: 5px;
+		background-color: $formBackgroundColor - 15;
+		color: $fontColour + 40;
+
+		&:focus {
+			background-color: $formBackgroundColor - 13;
+		}
+	}
+
+	textarea {
+		height: 200px;
+	}
+
+	button {
+		width: 100%;
+	}
+
+	.confirm {
+		
+		@include clearFix();
+		
+		span {
+			float: left;
+			width: 50%;
+			text-align: center;
+		}
+
+		button {
+			width: 95%;
+		}
+	}
+
+	.errorMessage {
+		@extend .error;
+		display: block;
+		padding: $formSpacing 0 0 0;
+		font-size: .9em;
+		font-style: italic;
+		animation: fade-in .3s;
+	}
+}

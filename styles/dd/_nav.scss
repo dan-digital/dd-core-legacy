@@ -1,0 +1,31 @@
+#mainNav {
+
+	@include clearFix();
+	float: left;
+	width: 250px;
+
+	a {
+		display: block;
+		padding: 10px;
+		background: $backgroundColour + 20;
+		text-decoration: none;
+		color: $fontColour;
+
+		&:hover {
+			background: $backgroundColour + 15;
+		}
+	}
+
+	.active {
+		color: $fontColour;
+		background: $backgroundColour + 30;
+		border-right: none;
+		color: $ddGreen;
+		border-right: solid 1px $ddGreen;
+
+		&:hover {
+			cursor: default;
+			background: $backgroundColour + 30;
+		}
+	}
+}

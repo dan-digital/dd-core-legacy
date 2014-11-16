@@ -3,18 +3,41 @@
 <head>
 	<meta charset="utf-8">
 	<title>DD Admin</title>
+	@include('includes.admin.meta-tags')
+	@include('includes.admin.style-tags')
+	<style>
+		form {
+			width: 400px;
+			margin: 150px auto 0 auto;
+		}
+	</style>
+	@include('includes.admin.head-script-tags')
 </head>
 <body>
 
 	{{ Form::open(['route' => 'admin.session.store']) }}
 		
-		{{ Form::label('username', 'Username: ') }}
-		{{ Form::text('username') }}
-
-		{{ Form::label('password', 'Password: ') }}
-		{{ Form::password('password') }}
-
-		{{ Form::submit('Login') }}
+		<section>
+			<h2>Login Details</h2>
+			<p>
+				{{ Form::label('username', 'Username') }}
+				{{ Form::text('username') }}
+				<span class="errorMessage">{{ $errors->first('username') }}</span>
+			</p>
+			<p>
+				{{ Form::label('password', 'Password') }}
+				{{ Form::password('password') }}
+				<span class="errorMessage">{{ $errors->first('password') }}</span>
+			</p>
+		</section>
+		<section>
+			<p>
+				{{ Form::submit('LOGIN') }}
+				@if (Session::has('login_error'))
+					<span class="errorMessage">{{ Session::get('login_error') }}</span>
+				@endif
+			</p>
+		</section>
 
 	{{ Form::close() }}
 

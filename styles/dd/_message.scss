@@ -1,0 +1,17 @@
+#message {
+	position: fixed;
+	padding: 12px;
+	top: 0;
+	left: 0;
+	width: 100%;
+	color: #000;
+	animation: fade-in .3s, fade-out 1s 2s 1 forwards;
+
+	&.confirm {
+		background: $ddGreen;
+	}
+
+	&.error {
+		background: $ddRed;
+	}
+}

@@ -1,0 +1,17 @@
+#mainHeader {
+
+	@include clearFix();
+	background: #000;
+	padding: 20px;
+
+	h1 {
+		float: left;
+		font-size: 1.1em;
+		font-weight: normal;
+		margin: 0;
+	}
+}
+
+#logout {
+	float: right;
+}

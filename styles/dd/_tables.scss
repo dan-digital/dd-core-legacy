@@ -1,0 +1,23 @@
+table {
+	margin: 0 0 15px 0;
+	width: 100%;
+	border-collapse: collapse;
+
+	th {
+		background-color: $backgroundColour - 10;
+		padding: 10px;
+		margin: 0 1px 0 0;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	td {
+		background-color: $backgroundColour;
+		padding: 10px;
+		margin: 0 1px 0 0;
+	}
+
+	tr {
+		border: 1px solid $backgroundColour + 10;
+	}
+}
