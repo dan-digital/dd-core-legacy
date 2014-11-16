@@ -16,7 +16,6 @@
 
 	<nav id="mainNav">
 		{{ HTML::ddMenuItem('dashboard', 'Dashboard') }}
-		{{ HTML::ddMenuItem('users', 'Users') }}
 	</nav>
 
 	<main>
