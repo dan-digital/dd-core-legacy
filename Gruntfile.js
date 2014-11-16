@@ -23,17 +23,15 @@ module.exports = function(grunt) {
 
     watch: {
       options: {
-        livereload: true
+        livereload: true,
+        spawn: false
       },
       styles: {
         files: ['styles/**/*'],
         tasks: ['sass', 'autoprefixer']
       },
       app: {
-        files: ['app/**'],
-        options: {
-          spawn: false
-        }
+        files: ['app/**']
       }
     }
 

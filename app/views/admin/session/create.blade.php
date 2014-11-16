@@ -22,12 +22,16 @@
 			<p>
 				{{ Form::label('username', 'Username') }}
 				{{ Form::text('username') }}
-				<span class="errorMessage">{{ $errors->first('username') }}</span>
+				@if ($errors->first('username'))
+					<span class="errorMessage">{{ $errors->first('username') }}</span>
+				@endif
 			</p>
 			<p>
 				{{ Form::label('password', 'Password') }}
 				{{ Form::password('password') }}
-				<span class="errorMessage">{{ $errors->first('password') }}</span>
+				@if ($errors->first('password'))
+					<span class="errorMessage">{{ $errors->first('password') }}</span>
+				@endif
 			</p>
 		</section>
 		<section>
