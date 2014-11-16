@@ -79,3 +79,19 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+/*
+|--------------------------------------------------------------------------
+| HTML Macros
+|--------------------------------------------------------------------------
+|
+| Extending the HTML helper. This helps gives us useful DD methods we
+| wouldn't normally get outside of the box with Laravel.
+|
+*/
+
+HTML::macro('ddMenuItem', function ($path, $name)
+{
+	$classAttribute = Request::is('admin/'.$path) ? ' class="active"' : '';
+	return '<a'.$classAttribute.' href="/admin/'.$path.'">'.$name.'</a>';
+});

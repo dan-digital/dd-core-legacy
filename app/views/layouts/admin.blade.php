@@ -15,8 +15,8 @@
 	</header>
 
 	<nav id="mainNav">
-		<a class="active" href="/admin/dashboard">Dashboard</a>
-		<a href="/admin/users">Users</a>
+		{{ HTML::ddMenuItem('dashboard', 'Dashboard') }}
+		{{ HTML::ddMenuItem('users', 'Users') }}
 	</nav>
 
 	<main>
