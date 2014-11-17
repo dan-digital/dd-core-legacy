@@ -9,6 +9,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
 	{
 		Route::get('logout', ['as' => 'admin.logout', 'uses' => 'SessionController@destroy']);
 		Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'DashboardController@index']);
+		Route::get('users', ['as' => 'admin.users', 'uses' => 'UsersController@index']);
 	});
 });
 
