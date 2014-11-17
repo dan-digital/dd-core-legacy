@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>DD Admin</title>
+	<title>@yield('title', ucfirst(Request::segment(2)).' | DanDigital Admin')</title>
 	@include('includes.admin.meta-tags')
 	@include('includes.admin.style-tags')
 	@include('includes.admin.head-script-tags')
