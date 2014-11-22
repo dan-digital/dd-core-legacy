@@ -26,7 +26,7 @@ class SessionController extends \BaseController {
 	{
 		$input = Input::only('username', 'password');
 
-		if (! $this->user->fill($input)->isValid())
+		if (! $this->user->fill($input)->isValid('login'))
 		{
 			return Redirect::back()->withErrors($this->user->errors)->withInput();
 		}

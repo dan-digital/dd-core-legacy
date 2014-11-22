@@ -2,7 +2,7 @@
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
 {
-	Route::resource('session', 'SessionController');
+	Route::resource('session', 'SessionController', ['only' => ['create', 'store', 'destroy']]);
 	Route::get('', ['as' => 'admin', 'uses' => 'SessionController@create']);
 
 	Route::group(['before' => 'auth'], function ()
