@@ -2,9 +2,16 @@
 
 namespace Admin;
 
-use View;
+use View, Request, User, Input, Redirect, Hash;
 
 class UsersController extends \BaseController {
+
+	protected $user;
+
+	public function __construct(User $user)
+	{
+		$this->user = $user;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +21,8 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('admin.users.index');
+		$users = $this->user->all();
+		return View::make('admin.users.index', ['users' => $users]);
 	}
 
 	/**
@@ -25,7 +33,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('admin.users.create');
 	}
 
 	/**
@@ -36,7 +44,17 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$input = Input::all();
+
+		if (! $this->user->fill($input)->isValid())
+		{
+			return Redirect::back()->withInput()->withErrors($this->user->errors);
+		}
+
+		$this->user->password = Hash::make($input['password']);
+		$this->user->save();
+
+		return Redirect::route('admin.users.index');
 	}
 
 	/**
