@@ -2,7 +2,7 @@
 
 @section('content')
 	
-	<p><a href="/admin/users/create">&lt; Back</a></p>
+	<p><a href="/admin/users/">&lt; Back</a></p>
 
 	{{ Form::open(['route' => 'admin.users.store']) }}
 		

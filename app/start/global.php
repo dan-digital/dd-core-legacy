@@ -92,6 +92,6 @@ require app_path().'/filters.php';
 
 HTML::macro('ddMenuItem', function ($path, $name)
 {
-	$classAttribute = Request::is('admin/'.$path) ? ' class="active"' : '';
+	$classAttribute = Request::is('admin/'.$path) || Request::is('admin/'.$path.'/*') ? ' class="active"' : '';
 	return '<a'.$classAttribute.' href="/admin/'.$path.'">'.$name.'</a>';
 });

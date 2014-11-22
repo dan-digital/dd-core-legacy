@@ -18,7 +18,6 @@
 				<tr>
 					<td>{{ $user->username }}</td>
 					<td>
-						<a href="/admin/users/{{ $user->id }}/edit/">edit</a> |
 						<a href="/">remove</a>
 					</td>
 				</tr>
