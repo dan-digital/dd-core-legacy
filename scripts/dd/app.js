@@ -1,1 +1,1 @@
-var DD = angular.module('DD', []);
+var DD = angular.module('DD', ['dd-templates']);

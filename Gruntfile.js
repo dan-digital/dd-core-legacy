@@ -4,9 +4,21 @@ module.exports = function(grunt) {
     
     pkg: grunt.file.readJSON('package.json'),
     
+    html2js: {
+      dd: {
+        options: {
+          base: 'scripts/dd',
+          module: 'dd-templates'
+        },
+        src: 'scripts/dd/**/*.html',
+        dest: 'templates/dd-templates.js'
+      }
+    },
+
     concat: {
       dd: {
         src: [
+          'templates/dd-templates.js',
           'scripts/dd/app.js',
           'scripts/dd/**/*.js'
         ],
@@ -31,6 +43,7 @@ module.exports = function(grunt) {
           'scripts/libs/jquery-1.11.1.js',
           'scripts/libs/angular.js',
           'scripts/libs/angular-mocks.js',
+          'templates/dd-templates.js',
           'scripts/dd/**/*.js'
         ],
         options: {
@@ -76,6 +89,7 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
@@ -84,5 +98,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-notify');
 
-  grunt.registerTask('default', ['concat', 'uglify', 'sass', 'autoprefixer', 'jasmine', 'watch']);
+  grunt.registerTask('default', ['html2js', 'concat', 'uglify', 'sass', 'autoprefixer', 'jasmine', 'watch']);
 };
