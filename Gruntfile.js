@@ -31,7 +31,7 @@ module.exports = function(grunt) {
         tasks: ['sass', 'autoprefixer']
       },
       app: {
-        files: ['app/**']
+        files: ['app/views/**', 'app/controllers/**', 'app/models/**']
       }
     }
 
