@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="DD">
 <head>
 	<meta charset="utf-8">
 	<title>@yield('title', ucfirst(Request::segment(2)).' | DanDigital Admin')</title>
