@@ -18,7 +18,7 @@
 				<tr>
 					<td>{{ $user->username }}</td>
 					<td>
-						<a href="/">remove</a>
+						<dd-confirm-link question="Are you sure you want to remove {{ $user->username }}?">remove</dd-confirm-link>
 					</td>
 				</tr>
 			@endforeach

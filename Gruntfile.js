@@ -25,19 +25,6 @@ module.exports = function(grunt) {
       }
     },
 
-    connect: {
-      jasmine: {
-        options: {
-          port: 8001,
-          hostname: 'localhost',
-          livereload: true,
-          open: {
-            target: 'http://localhost:8001/_specrunner.html'
-          }
-        }
-      }
-    },
-
     jasmine: {
       dd: {
         src: [
@@ -47,8 +34,7 @@ module.exports = function(grunt) {
           'scripts/dd/**/*.js'
         ],
         options: {
-          specs: 'specs/**/*.spec.js',
-          keepRunner: true
+          specs: 'specs/**/*.spec.js'
         }
       }
     },
@@ -81,7 +67,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['scripts/**/*', 'specs/**/*'],
-        tasks: ['concat', 'uglify', 'jasmine:dd:build']
+        tasks: ['concat', 'uglify', 'jasmine']
       },
       app: {
         files: ['app/views/**', 'app/controllers/**', 'app/models/**']
@@ -92,12 +78,11 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-notify');
 
-  grunt.registerTask('default', ['concat', 'uglify', 'sass', 'autoprefixer', 'connect', 'jasmine', 'watch']);
+  grunt.registerTask('default', ['concat', 'uglify', 'sass', 'autoprefixer', 'jasmine', 'watch']);
 };

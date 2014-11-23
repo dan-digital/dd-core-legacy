@@ -1,0 +1,27 @@
+.dd-confirm {
+};
+
+.dd-confirm-box {
+
+	display: none;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 2;
+	background: $backgroundColour + 10;
+	text-align: center;
+	padding: 20px;
+
+	&.visible {
+		display: block;
+	}
+}
+
+.dd-confirm-yes {
+	margin: 0 15px 0 0;
+};
+
+.dd-confirm-quesiton {
+
+}
