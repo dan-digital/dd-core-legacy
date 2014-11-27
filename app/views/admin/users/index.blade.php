@@ -18,7 +18,7 @@
 				<tr>
 					<td>{{ $user->username }}</td>
 					<td>
-						<dd-confirm-link question="Are you sure you want to remove {{ $user->username }}?">remove</dd-confirm-link>
+						<dd-confirm resource="{{ $user }}" question="Are you sure you want to remove {{ $user->username }}?">remove</dd-confirm>
 					</td>
 				</tr>
 			@endforeach

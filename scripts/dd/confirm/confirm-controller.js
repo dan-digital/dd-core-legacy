@@ -1,8 +1,6 @@
-DD.controller('ddConfirmController', ['$scope', function ($scope) {
+DD.controller('ddConfirmController', ['$scope', 'ddUsersService', function ($scope, ddUsersService) {
 
 	var self = this;
-
-	self.question = $scope.question;
 
 	self.ask = function () {
 
@@ -11,11 +9,16 @@ DD.controller('ddConfirmController', ['$scope', function ($scope) {
 
 	self.sayYes = function () {
 
-		self.isVisible = false;
-		$scope.action();
+		self.close();
+		ddUsersService.remove($scope.resource);
 	};
 
 	self.sayNo = function () {
+
+		self.close();
+	};
+
+	self.close = function () {
 
 		self.isVisible = false;
 	};

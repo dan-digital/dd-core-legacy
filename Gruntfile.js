@@ -80,7 +80,7 @@ module.exports = function(grunt) {
       },
       scripts: {
         files: ['scripts/**/*', 'specs/**/*'],
-        tasks: ['concat', 'uglify', 'jasmine']
+        tasks: ['html2js', 'concat', 'uglify', 'jasmine']
       },
       app: {
         files: ['app/views/**', 'app/controllers/**', 'app/models/**']

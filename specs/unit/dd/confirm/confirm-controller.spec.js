@@ -1,6 +1,10 @@
 describe('ddConfirmController', function () {
 
-	var controller, scope;
+	var controller, 
+	scope, 
+	usersService = {
+		remove: function (id) { }
+	};
 
 	beforeEach(function () {
 
@@ -10,18 +14,13 @@ describe('ddConfirmController', function () {
 
 			scope = $rootScope.$new();
 
-			scope.question = 'foo?';
-			scope.action = jasmine.createSpy('action');
-
 			controller = $controller('ddConfirmController', {
-				$scope: scope
+				$scope: scope,
+				ddUsersService: usersService
 			});
 		});
-	});
 
-	it('should contain a question', function () {
-
-		expect(controller.question).toBe(scope.question);
+		spyOn(usersService, 'remove');
 	});
 
 	it('should ask the user a question when called', function () {
@@ -30,17 +29,25 @@ describe('ddConfirmController', function () {
 		expect(controller.isVisible).toEqual(true);
 	});
 
-	it('should perform the requested action if the user wants to and hide the question', function () {
+	it('should delete the specified resource if the user chooses to', function () {
 
+		scope.resource = 0;
 		controller.sayYes();
 		expect(controller.isVisible).toEqual(false);
-		expect(scope.action).toHaveBeenCalled();
+		expect(usersService.remove).toHaveBeenCalledWith(0);
 	});
 
-	it('should close if the user doesn\'t want to perform the action', function () {
+	it('should not delete the resource if the user chooses not to', function () {
 
+		scope.resource = 0;
 		controller.sayNo();
-		expect(scope.action).not.toHaveBeenCalled();
+		expect(controller.isVisible).toEqual(false);
+		expect(usersService.remove).not.toHaveBeenCalled();
+	});
+
+	it('should close on request', function () {
+
+		controller.close();
 		expect(controller.isVisible).toEqual(false);
 	});
 

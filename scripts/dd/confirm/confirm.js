@@ -1,13 +1,13 @@
-DD.directive('ddConfirmLink', function () {
+DD.directive('ddConfirm', function () {
 
 	return {
 		restrict: 'E',
 		transclude: true,
 		scope: {
 			question: '@',
-			action: '&'
+			resource: '@'
 		},
-		templateUrl: 'confirm/confirm-link.html',
+		templateUrl: 'confirm/confirm.html',
 		controller: 'ddConfirmController',
 		controllerAs: 'ctrl'
 	};
