@@ -31,7 +31,7 @@ describe('ddConfirmController', function () {
 
 	it('should delete the specified resource if the user chooses to', function () {
 
-		scope.resource = 0;
+		scope.id = 0;
 		controller.sayYes();
 		expect(controller.isVisible).toEqual(false);
 		expect(usersService.remove).toHaveBeenCalledWith(0);
@@ -39,7 +39,7 @@ describe('ddConfirmController', function () {
 
 	it('should not delete the resource if the user chooses not to', function () {
 
-		scope.resource = 0;
+		scope.id = 0;
 		controller.sayNo();
 		expect(controller.isVisible).toEqual(false);
 		expect(usersService.remove).not.toHaveBeenCalled();

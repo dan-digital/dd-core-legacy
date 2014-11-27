@@ -5,7 +5,7 @@ DD.directive('ddConfirm', function () {
 		transclude: true,
 		scope: {
 			question: '@',
-			resource: '@'
+			id: '@'
 		},
 		templateUrl: 'confirm/confirm.html',
 		controller: 'ddConfirmController',

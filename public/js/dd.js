@@ -27,7 +27,7 @@ DD.controller('ddConfirmController', ['$scope', 'ddUsersService', function ($sco
 	self.sayYes = function () {
 
 		self.close();
-		ddUsersService.remove($scope.resource);
+		ddUsersService.remove($scope.id);
 	};
 
 	self.sayNo = function () {
@@ -48,7 +48,7 @@ DD.directive('ddConfirm', function () {
 		transclude: true,
 		scope: {
 			question: '@',
-			resource: '@'
+			id: '@'
 		},
 		templateUrl: 'confirm/confirm.html',
 		controller: 'ddConfirmController',
@@ -59,11 +59,13 @@ DD.directive('ddConfirm', function () {
 DD.factory('ddUsersService', ['$http', function ($http) {
 
 	return {
-		remove: function (user) {
+		remove: function (id) {
+
+			console.log(id);
 
 			return $http({
 				method: 'DELETE',
-				url: '/admin/users/' + user
+				url: '/admin/users/' + id
 			});
 		}
 	};

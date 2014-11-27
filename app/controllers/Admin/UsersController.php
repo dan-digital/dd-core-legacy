@@ -102,7 +102,8 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$user =  $this->user->find($id);
+		$user->delete();
 	}
 
 }

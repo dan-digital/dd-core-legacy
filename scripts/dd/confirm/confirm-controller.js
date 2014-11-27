@@ -10,7 +10,7 @@ DD.controller('ddConfirmController', ['$scope', 'ddUsersService', function ($sco
 	self.sayYes = function () {
 
 		self.close();
-		ddUsersService.remove($scope.resource);
+		ddUsersService.remove($scope.id);
 	};
 
 	self.sayNo = function () {
