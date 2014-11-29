@@ -3,7 +3,21 @@
   100% { opacity: 0; z-index: -1; }
 }
 
+.fade-out {
+	animation: fade-in .3s;
+}
+
 @keyframes fade-in {
   0%   { opacity: 0; }
   100% { opacity: 1; }
+}
+
+.fade-in {
+	animation: fade-in .3s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

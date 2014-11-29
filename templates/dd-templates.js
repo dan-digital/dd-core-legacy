@@ -16,7 +16,7 @@ angular.module("confirm/confirm.html", []).run(["$templateCache", function($temp
 
 angular.module("users/users-table.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("users/users-table.html",
-    "<table>\n" +
+    "<table ng-show=\"ctrl.users !== undefined\" class=\"fade-in\">\n" +
     "	<thead>\n" +
     "		<tr>\n" +
     "			<th>Username</th>\n" +
@@ -27,9 +27,11 @@ angular.module("users/users-table.html", []).run(["$templateCache", function($te
     "		<tr ng-repeat=\"user in ctrl.users\">\n" +
     "			<td>{{ user.username }}</td>\n" +
     "			<td>\n" +
-    "				<dd-confirm action=\"ctrl.removeUser(user.id)\" question=\"Are you sure you want to remove {{ user.username }}?\">remove</dd-confirm>\n" +
+    "				<dd-confirm ng-hide=\"ctrl.pendingUserId == user.id\" action=\"ctrl.removeUser(user.id)\" question=\"Are you sure you want to remove {{ user.username }}?\">remove</dd-confirm>\n" +
+    "				<div ng-show=\"ctrl.pendingUserId == user.id\" class=\"loader-small\"></div>\n" +
     "			</td>\n" +
     "		</tr>\n" +
     "	</tbody>\n" +
-    "</table>");
+    "</table>\n" +
+    "<div ng-show=\"ctrl.users === undefined\" class=\"loader\"></div>");
 }]);

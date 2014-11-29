@@ -70,3 +70,30 @@ button, input[type='submit'] {
 .ddBlue { color: $ddBlue; }
 .ddGreen { color: $ddGreen; }
 .ddRed { color: $ddRed; }
+
+.loader {
+  	border: 2px solid $ddGreen;
+  	border-right-color: transparent;
+  	border-radius: 50%;
+  	display: block;
+  	margin: 0 auto 20px auto;
+  	width: 24px;
+  	height: 24px;
+  	animation: spin 1s linear infinite;
+}
+
+.loader-small {
+  	@extend .loader;
+  	margin: 0;
+  	width: 12px;
+  	height: 12px;
+}
+
+.sortable {
+
+	cursor: move;
+
+	&:hover, &:hover td {
+		background-color: $backgroundColour + 5;
+	}
+}

@@ -12,7 +12,11 @@ DD.controller('ddUsersController', ['ddUsersService', function (ddUsersService) 
 
 	self.removeUser = function (id) {
 
+		self.pendingUserId = id;
+
 		ddUsersService.remove(id).success(function (data) {
+
+			self.pendingUserId = null;
 
 			angular.forEach(self.users, function (user, index) {
 
