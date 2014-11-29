@@ -15,6 +15,7 @@
 
 	&.visible {
 		display: block;
+		animation: fade-in-down .2s;
 	}
 }
 

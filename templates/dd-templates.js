@@ -27,7 +27,10 @@ angular.module("users/users-table.html", []).run(["$templateCache", function($te
     "		<tr ng-repeat=\"user in ctrl.users\">\n" +
     "			<td>{{ user.username }}</td>\n" +
     "			<td>\n" +
-    "				<dd-confirm ng-hide=\"ctrl.pendingUserId == user.id\" action=\"ctrl.removeUser(user.id)\" question=\"Are you sure you want to remove {{ user.username }}?\">remove</dd-confirm>\n" +
+    "				<dd-confirm \n" +
+    "					ng-hide=\"ctrl.pendingUserId == user.id\"\n" +
+    "					action=\"ctrl.removeUser(user.id)\"\n" +
+    "					question=\"Are you sure you want to remove {{ user.username }}?\">remove</dd-confirm>\n" +
     "				<div ng-show=\"ctrl.pendingUserId == user.id\" class=\"loader-small\"></div>\n" +
     "			</td>\n" +
     "		</tr>\n" +
