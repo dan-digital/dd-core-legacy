@@ -1,6 +1,8 @@
-DD.controller('ddConfirmController', ['$scope', function ($scope) {
+DD.controller('ddConfirmController', ['$scope', '$sce', function ($scope, $sce) {
 
 	var self = this;
+
+	self.question = $scope.question = $sce.trustAsHtml($scope.question);
 
 	self.ask = function () {
 

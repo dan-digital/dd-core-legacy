@@ -12,7 +12,7 @@
 				<dd-confirm 
 					ng-hide="ctrl.pendingUserId == user.id"
 					action="ctrl.removeUser(user.id)"
-					question="Are you sure you want to remove {{ user.username }}?">remove</dd-confirm>
+					question="Are you sure you want to remove <strong>{{ user.username }}</strong>?">remove</dd-confirm>
 				<div ng-show="ctrl.pendingUserId == user.id" class="loader-small"></div>
 			</td>
 		</tr>
