@@ -1,4 +1,4 @@
-DD.controller('ddConfirmController', ['$scope', 'ddUsersService', function ($scope, ddUsersService) {
+DD.controller('ddConfirmController', ['$scope', function ($scope) {
 
 	var self = this;
 
@@ -10,7 +10,7 @@ DD.controller('ddConfirmController', ['$scope', 'ddUsersService', function ($sco
 	self.sayYes = function () {
 
 		self.close();
-		ddUsersService.remove($scope.id);
+		$scope.action();
 	};
 
 	self.sayNo = function () {

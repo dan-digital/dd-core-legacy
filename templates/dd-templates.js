@@ -1,4 +1,4 @@
-angular.module('dd-templates', ['confirm/confirm.html']);
+angular.module('dd-templates', ['confirm/confirm.html', 'users/users-table.html']);
 
 angular.module("confirm/confirm.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("confirm/confirm.html",
@@ -12,4 +12,24 @@ angular.module("confirm/confirm.html", []).run(["$templateCache", function($temp
     "	</div>\n" +
     "	<a ng-click=\"ctrl.ask()\" class=\"dd-confirm-link\" href=\"javascript:;\" ng-transclude></a>\n" +
     "</div>");
+}]);
+
+angular.module("users/users-table.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("users/users-table.html",
+    "<table>\n" +
+    "	<thead>\n" +
+    "		<tr>\n" +
+    "			<th>Username</th>\n" +
+    "			<th>Options</th>\n" +
+    "		</tr>\n" +
+    "	</thead>\n" +
+    "	<tbody>\n" +
+    "		<tr ng-repeat=\"user in ctrl.users\">\n" +
+    "			<td>{{ user.username }}</td>\n" +
+    "			<td>\n" +
+    "				<dd-confirm action=\"ctrl.removeUser(user.id)\" question=\"Are you sure you want to remove {{ user.username }}?\">remove</dd-confirm>\n" +
+    "			</td>\n" +
+    "		</tr>\n" +
+    "	</tbody>\n" +
+    "</table>");
 }]);

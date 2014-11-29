@@ -6,23 +6,6 @@
 
 	<h2>Users</h2>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Username</th>
-				<th>Options</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach($users as $user)
-				<tr>
-					<td>{{ $user->username }}</td>
-					<td>
-						<dd-confirm id="{{ $user->id }}" question="Are you sure you want to remove {{ $user->username }}?">remove</dd-confirm>
-					</td>
-				</tr>
-			@endforeach
-		</tbody>
-	</table>
+	<dd-users-table></dd-users-table>
 
 @stop

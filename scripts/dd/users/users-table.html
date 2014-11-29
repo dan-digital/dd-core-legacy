@@ -1,0 +1,16 @@
+<table>
+	<thead>
+		<tr>
+			<th>Username</th>
+			<th>Options</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="user in ctrl.users">
+			<td>{{ user.username }}</td>
+			<td>
+				<dd-confirm action="ctrl.removeUser(user.id)" question="Are you sure you want to remove {{ user.username }}?">remove</dd-confirm>
+			</td>
+		</tr>
+	</tbody>
+</table>

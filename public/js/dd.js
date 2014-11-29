@@ -1,4 +1,4 @@
-angular.module('dd-templates', ['confirm/confirm.html']);
+angular.module('dd-templates', ['confirm/confirm.html', 'users/users-table.html']);
 
 angular.module("confirm/confirm.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("confirm/confirm.html",
@@ -14,8 +14,28 @@ angular.module("confirm/confirm.html", []).run(["$templateCache", function($temp
     "</div>");
 }]);
 
+angular.module("users/users-table.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("users/users-table.html",
+    "<table>\n" +
+    "	<thead>\n" +
+    "		<tr>\n" +
+    "			<th>Username</th>\n" +
+    "			<th>Options</th>\n" +
+    "		</tr>\n" +
+    "	</thead>\n" +
+    "	<tbody>\n" +
+    "		<tr ng-repeat=\"user in ctrl.users\">\n" +
+    "			<td>{{ user.username }}</td>\n" +
+    "			<td>\n" +
+    "				<dd-confirm action=\"ctrl.removeUser(user.id)\" question=\"Are you sure you want to remove {{ user.username }}?\">remove</dd-confirm>\n" +
+    "			</td>\n" +
+    "		</tr>\n" +
+    "	</tbody>\n" +
+    "</table>");
+}]);
+
 var DD = angular.module('DD', ['dd-templates']);
-DD.controller('ddConfirmController', ['$scope', 'ddUsersService', function ($scope, ddUsersService) {
+DD.controller('ddConfirmController', ['$scope', function ($scope) {
 
 	var self = this;
 
@@ -27,7 +47,7 @@ DD.controller('ddConfirmController', ['$scope', 'ddUsersService', function ($sco
 	self.sayYes = function () {
 
 		self.close();
-		ddUsersService.remove($scope.id);
+		$scope.action();
 	};
 
 	self.sayNo = function () {
@@ -48,7 +68,7 @@ DD.directive('ddConfirm', function () {
 		transclude: true,
 		scope: {
 			question: '@',
-			id: '@'
+			action: '&'
 		},
 		templateUrl: 'confirm/confirm.html',
 		controller: 'ddConfirmController',
@@ -56,18 +76,65 @@ DD.directive('ddConfirm', function () {
 	};
 
 });
+DD.controller('ddUsersController', ['ddUsersService', function (ddUsersService) {
+
+	var self = this;
+
+	self.getUsers = function () {
+
+		ddUsersService.get().success(function (data) {
+
+			self.users = data;
+		});
+	};
+
+	self.removeUser = function (id) {
+
+		ddUsersService.remove(id).success(function (data) {
+
+			angular.forEach(self.users, function (user, index) {
+
+				if (user.id === id) {
+
+					self.users.splice(index, 1);
+				}
+			});
+		});
+	};
+
+	self.getUsers();
+
+}]);
 DD.factory('ddUsersService', ['$http', function ($http) {
 
+	var url = '/admin/users/';
+
 	return {
+
+		get: function (id) {
+
+			if (id !== undefined) {
+
+				return $http.get(url + id);
+			}
+
+			return $http.get(url);
+		},
+
 		remove: function (id) {
 
-			console.log(id);
-
-			return $http({
-				method: 'DELETE',
-				url: '/admin/users/' + id
-			});
+			return $http({ method: 'DELETE', url: url + id });
 		}
+	};
+
+}]);
+DD.directive('ddUsersTable', [function () {
+
+	return {
+		restrict: 'E',
+		templateUrl: 'users/users-table.html',
+		controller: 'ddUsersController',
+		controllerAs: 'ctrl'
 	};
 
 }]);

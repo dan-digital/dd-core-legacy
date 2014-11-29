@@ -22,6 +22,12 @@ class UsersController extends \BaseController {
 	public function index()
 	{
 		$users = $this->user->all();
+		
+		if (Request::wantsJson())
+		{
+			return $users;
+		}
+
 		return View::make('admin.users.index', ['users' => $users]);
 	}
 
@@ -66,7 +72,12 @@ class UsersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$users = $this->user->find($id);
+		
+		if (Request::wantsJson())
+		{
+			return $users;
+		}
 	}
 
 	/**
@@ -102,7 +113,7 @@ class UsersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		$user =  $this->user->find($id);
+		$user = $this->user->find($id);
 		$user->delete();
 	}
 
