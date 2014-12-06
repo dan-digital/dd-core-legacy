@@ -1,4 +1,4 @@
-angular.module('dd-templates', ['confirm/confirm.html', 'users/users-table.html']);
+angular.module('dd-templates', ['confirm/confirm.html', 'message/message.html', 'users/users-table.html']);
 
 angular.module("confirm/confirm.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("confirm/confirm.html",
@@ -12,6 +12,11 @@ angular.module("confirm/confirm.html", []).run(["$templateCache", function($temp
     "	</div>\n" +
     "	<a ng-click=\"ctrl.ask()\" class=\"dd-confirm-link\" href=\"javascript:;\" ng-transclude></a>\n" +
     "</div>");
+}]);
+
+angular.module("message/message.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("message/message.html",
+    "<div class=\"ddMessage {{ ctrl.type }}\" ng-class=\"{ hidden: ctrl.isHidden }\">{{ ctrl.message }}</div>");
 }]);
 
 angular.module("users/users-table.html", []).run(["$templateCache", function($templateCache) {
@@ -116,6 +121,16 @@ DD.factory('ddMessageService', ['$timeout', function ($timeout) {
 	return self;
 
 }]);
+DD.directive('ddMessage', function () {
+
+	return {
+		restrict: 'E',
+		templateUrl: 'message/message.html',
+		controller: 'ddMessageController',
+		controllerAs: 'ctrl'
+	};
+
+});
 DD.controller('ddUsersController', ['ddUsersService', function (ddUsersService) {
 
 	var self = this;
