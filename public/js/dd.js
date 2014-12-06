@@ -83,6 +83,14 @@ DD.directive('ddConfirm', function () {
 	};
 
 });
+DD.controller('ddMessageController', ['ddMessageService', function (ddMessageService) {
+
+	var self = this;
+
+	self.isHidden = ddMessageService.isHidden;
+	self.message = ddMessageService.message;
+	self.type = ddMessageService.type;
+}]);
 DD.factory('ddMessageService', ['$timeout', function ($timeout) {
 
 	var self = {};
