@@ -21,20 +21,20 @@ describe('ddMessage', function () {
 
 		var element = getElement();
 
-		scope.ctrl.message = 'foo';
+		scope.ctrl.message.text = 'foo';
 		scope.$digest();
-		expect(element.html()).toEqual(scope.ctrl.message);
+		expect(element.html()).toEqual(scope.ctrl.message.text);
 	});
 
 	it('should contain the .hidden class when hidden', function () {
 
 		var element = getElement();
 
-		scope.ctrl.isHidden = true;
+		scope.ctrl.message.isHidden = true;
 		scope.$digest();
 		expect(element.hasClass('hidden')).toEqual(true);
 
-		scope.ctrl.isHidden = false;
+		scope.ctrl.message.isHidden = false;
 		scope.$digest();
 		expect(element.hasClass('hidden')).toEqual(false);
 	});
@@ -43,7 +43,7 @@ describe('ddMessage', function () {
 
 		var element = getElement();
 
-		scope.ctrl.type = 'foo';
+		scope.ctrl.message.type = 'foo';
 		scope.$digest();
 		expect(element.hasClass('foo')).toEqual(true);
 	});

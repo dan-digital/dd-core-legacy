@@ -16,7 +16,7 @@ angular.module("confirm/confirm.html", []).run(["$templateCache", function($temp
 
 angular.module("message/message.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("message/message.html",
-    "<div class=\"ddMessage {{ ctrl.type }}\" ng-class=\"{ hidden: ctrl.isHidden }\">{{ ctrl.message }}</div>");
+    "<div class=\"ddMessage {{ ctrl.message.type }}\" ng-class=\"{ hidden: ctrl.message.isHidden }\">{{ ctrl.message.text }}</div>");
 }]);
 
 angular.module("users/users-table.html", []).run(["$templateCache", function($templateCache) {
@@ -91,24 +91,21 @@ DD.directive('ddConfirm', function () {
 DD.controller('ddMessageController', ['ddMessageService', function (ddMessageService) {
 
 	var self = this;
-
-	self.isHidden = ddMessageService.isHidden;
-	self.message = ddMessageService.message;
-	self.type = ddMessageService.type;
+	self.message = ddMessageService;
 }]);
 DD.factory('ddMessageService', ['$timeout', function ($timeout) {
 
 	var self = {};
 
 	self.isHidden = true;
-	self.message = '';
+	self.text = '';
 	self.type = '';
-	self.delay = 1000;
+	self.delay = 2500;
 
 	self.call = function (message, type, delay) {
 
 		self.isHidden = false;
-		self.message = message;
+		self.text = message;
 		self.type = type;
 
 		$timeout(function () {
@@ -131,7 +128,7 @@ DD.directive('ddMessage', function () {
 	};
 
 });
-DD.controller('ddUsersController', ['ddUsersService', function (ddUsersService) {
+DD.controller('ddUsersController', ['ddUsersService', 'ddMessageService', function (ddUsersService, ddMessageService) {
 
 	var self = this;
 
@@ -156,6 +153,7 @@ DD.controller('ddUsersController', ['ddUsersService', function (ddUsersService) 
 				if (user.id === id) {
 
 					self.users.splice(index, 1);
+					ddMessageService.call(user.username + ' was succefully removed.', 'confirm');
 				}
 			});
 		});
@@ -190,6 +188,7 @@ DD.factory('ddUsersService', ['$http', function ($http) {
 DD.directive('ddUsersTable', [function () {
 
 	return {
+		scope: {},
 		restrict: 'E',
 		templateUrl: 'users/users-table.html',
 		controller: 'ddUsersController',

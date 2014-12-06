@@ -16,7 +16,7 @@ angular.module("confirm/confirm.html", []).run(["$templateCache", function($temp
 
 angular.module("message/message.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("message/message.html",
-    "<div class=\"ddMessage {{ ctrl.type }}\" ng-class=\"{ hidden: ctrl.isHidden }\">{{ ctrl.message }}</div>");
+    "<div class=\"ddMessage {{ ctrl.message.type }}\" ng-class=\"{ hidden: ctrl.message.isHidden }\">{{ ctrl.message.text }}</div>");
 }]);
 
 angular.module("users/users-table.html", []).run(["$templateCache", function($templateCache) {

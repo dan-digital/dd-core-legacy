@@ -9,6 +9,8 @@
 </head>
 <body>
 
+	<dd-message></dd-message>
+
 	<header id="mainHeader">
 		<h1>DanDigital Admin</h1>
 		<a id="logout" href="/admin/logout">Logout</a>

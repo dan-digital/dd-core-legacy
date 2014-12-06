@@ -3,14 +3,14 @@ DD.factory('ddMessageService', ['$timeout', function ($timeout) {
 	var self = {};
 
 	self.isHidden = true;
-	self.message = '';
+	self.text = '';
 	self.type = '';
-	self.delay = 1000;
+	self.delay = 2500;
 
 	self.call = function (message, type, delay) {
 
 		self.isHidden = false;
-		self.message = message;
+		self.text = message;
 		self.type = type;
 
 		$timeout(function () {

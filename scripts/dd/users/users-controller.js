@@ -1,4 +1,4 @@
-DD.controller('ddUsersController', ['ddUsersService', function (ddUsersService) {
+DD.controller('ddUsersController', ['ddUsersService', 'ddMessageService', function (ddUsersService, ddMessageService) {
 
 	var self = this;
 
@@ -23,6 +23,7 @@ DD.controller('ddUsersController', ['ddUsersService', function (ddUsersService) 
 				if (user.id === id) {
 
 					self.users.splice(index, 1);
+					ddMessageService.call(user.username + ' was succefully removed.', 'confirm');
 				}
 			});
 		});

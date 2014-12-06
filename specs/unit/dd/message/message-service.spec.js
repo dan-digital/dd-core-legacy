@@ -29,7 +29,7 @@ describe('ddMessageService', function () {
 
 		ddMessageService.call(message);
 
-		expect(ddMessageService.message).toEqual(message);
+		expect(ddMessageService.text).toEqual(message);
 		expect(ddMessageService.isHidden).toEqual(false);
 
 		$timeout.flush(ddMessageService.delay);
