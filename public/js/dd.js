@@ -115,6 +115,16 @@ DD.factory('ddMessageService', ['$timeout', function ($timeout) {
 		}, delay || self.delay);
 	};
 
+	self.confirm = function (message) {
+
+		self.call(message, 'confirm');
+	};
+
+	self.error = function (message) {
+
+		self.call(message, 'error');
+	};
+
 	return self;
 
 }]);
@@ -153,7 +163,7 @@ DD.controller('ddUsersController', ['ddUsersService', 'ddMessageService', functi
 				if (user.id === id) {
 
 					self.users.splice(index, 1);
-					ddMessageService.call(user.username + ' was succefully removed.', 'confirm');
+					ddMessageService.confirm(user.username + ' was succefully removed.');
 				}
 			});
 		});

@@ -20,6 +20,16 @@ DD.factory('ddMessageService', ['$timeout', function ($timeout) {
 		}, delay || self.delay);
 	};
 
+	self.confirm = function (message) {
+
+		self.call(message, 'confirm');
+	};
+
+	self.error = function (message) {
+
+		self.call(message, 'error');
+	};
+
 	return self;
 
 }]);

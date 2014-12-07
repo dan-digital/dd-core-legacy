@@ -61,4 +61,24 @@ describe('ddMessageService', function () {
 		expect(ddMessageService.isHidden).toEqual(true);
 	});
 
+	it('should have a confirm helper', function () {
+
+		var message = 'foo';
+		
+		ddMessageService.confirm(message);
+
+		expect(ddMessageService.text).toEqual(message);
+		expect(ddMessageService.type).toBeTruthy();
+	});
+
+	it('should have an error helper', function () {
+
+		var message = 'foo';
+		
+		ddMessageService.error(message);
+
+		expect(ddMessageService.text).toEqual(message);
+		expect(ddMessageService.type).toBeTruthy();
+	});
+
 });

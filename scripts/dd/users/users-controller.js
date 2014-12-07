@@ -23,7 +23,7 @@ DD.controller('ddUsersController', ['ddUsersService', 'ddMessageService', functi
 				if (user.id === id) {
 
 					self.users.splice(index, 1);
-					ddMessageService.call(user.username + ' was succefully removed.', 'confirm');
+					ddMessageService.confirm(user.username + ' was succefully removed.');
 				}
 			});
 		});
