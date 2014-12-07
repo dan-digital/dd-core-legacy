@@ -13,7 +13,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function()
 	});
 });
 
-Route::get('/', function()
+Route::get('', function ()
 {
 	return View::make('hello');
 });
