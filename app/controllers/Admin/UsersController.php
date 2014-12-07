@@ -60,7 +60,7 @@ class UsersController extends \BaseController {
 		$this->user->password = Hash::make($input['password']);
 		$this->user->save();
 
-		return Redirect::route('admin.users.index');
+		return Redirect::route('admin.users.index')->with('ddMessage', ['text' => $this->user->username.' was successfully added.', 'type' => 'confirm']);
 	}
 
 	/**

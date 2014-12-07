@@ -11,6 +11,10 @@
 
 	<dd-message></dd-message>
 
+	@if (Session::has('ddMessage'))
+		<div class="ddMessage {{ Session::get('ddMessage')['type'] }} showHide">{{ Session::get('ddMessage')['text'] }}</div>
+	@endif
+
 	<header id="mainHeader">
 		<h1>DanDigital Admin</h1>
 		<a id="logout" href="/admin/logout">Logout</a>

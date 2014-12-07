@@ -8,6 +8,10 @@
 	z-index: 1;
 	animation: fade-in .6s;
 
+	&.showHide {
+		animation: fade-in .6s, fade-out .6s 2.5s forwards;
+	}
+
 	&.hidden {
 		animation: fade-out .6s forwards;
 	}
