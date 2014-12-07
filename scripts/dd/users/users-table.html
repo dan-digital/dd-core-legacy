@@ -9,7 +9,8 @@
 		<tr ng-repeat="user in ctrl.users">
 			<td>{{ user.username }}</td>
 			<td>
-				<dd-confirm 
+				<dd-confirm
+					ng-if="ctrl.users.length > 1"
 					ng-hide="ctrl.pendingUserId == user.id"
 					action="ctrl.removeUser(user.id)"
 					question="Are you sure you want to remove <strong>{{ user.username }}</strong>?">remove</dd-confirm>
