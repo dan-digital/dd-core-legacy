@@ -8,6 +8,3 @@ composer.lock
 Thumbs.db
 /node_modules
 .sass-cache
-/public/css
-/public/js
-!public/js/libs
