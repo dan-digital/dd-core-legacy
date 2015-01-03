@@ -12,5 +12,6 @@ Thumbs.db
 
 # Compiled files
 /public/css
+!/public/js
 /public/js/*
 !/public/js/libs
