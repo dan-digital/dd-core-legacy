@@ -6,12 +6,6 @@ composer.lock
 .env.php
 .DS_Store
 Thumbs.db
-
 /node_modules
 .sass-cache
-
-# Compiled files
-/public/css
-!/public/js
-/public/js/*
-!/public/js/libs
+/public/.dev
