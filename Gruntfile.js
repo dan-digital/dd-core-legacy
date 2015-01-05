@@ -31,6 +31,14 @@ module.exports = function(grunt) {
       },
       views: {
         files: ['<%= config.views %>/**']
+      },
+      sass: {
+        files: ['styles/**/*.scss'],
+        tasks: ['sass', 'autoprefixer']
+      },
+      ddJs: {
+        files: ['scripts/dd/**'],
+        tasks: ['html2js:dd', 'concat:dd']
       }
     },
 
