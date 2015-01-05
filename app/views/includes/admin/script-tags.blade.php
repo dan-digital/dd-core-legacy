@@ -3,4 +3,4 @@
 <script src="/.dev/bower_components/angular/angular.js"></script>
 <script src="/.dev/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <!-- endbower -->
-<script src="/js/dd.min.js"></script>
+<script src="/.dev/js/dd.js"></script>

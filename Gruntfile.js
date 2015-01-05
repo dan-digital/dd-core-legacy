@@ -4,10 +4,10 @@ module.exports = function(grunt) {
 
   var config = {
     app: 'app',
+    dev: 'public/.dev',
     views: 'app/views',
     includes: 'app/views/includes',
-    layouts: 'app/views/layouts',
-    dist: 'dist'
+    layouts: 'app/views/layouts'
   };
 
   grunt.initConfig({
@@ -32,12 +32,36 @@ module.exports = function(grunt) {
       views: {
         files: ['<%= config.views %>/**']
       }
-    }
+    },
+
+    html2js: {
+      dd: {
+        options: {
+          base: 'scripts/dd',
+          module: 'dd-templates'
+        },
+        src: 'scripts/dd/**/*.html',
+        dest: 'scripts/dd/dd-templates.js'
+      }
+    },
+
+    concat: {
+      dd: {
+        src: [
+          'scripts/dd/dd-templates.js',
+          'scripts/dd/app.js',
+          'scripts/dd/**/*.js'
+        ],
+        dest: '<%= config.dev %>/js/dd.js'
+      }
+    },
 
   });
 
   grunt.registerTask('dev', [
     'wiredep',
+    'html2js',
+    'concat',
     'watch'
   ]);
 
