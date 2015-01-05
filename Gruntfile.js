@@ -41,14 +41,13 @@ module.exports = function(grunt) {
           module: 'dd-templates'
         },
         src: 'scripts/dd/**/*.html',
-        dest: 'scripts/dd/dd-templates.js'
+        dest: '<%= config.dev %>/js/dd-templates.js'
       }
     },
 
     concat: {
       dd: {
         src: [
-          'scripts/dd/dd-templates.js',
           'scripts/dd/app.js',
           'scripts/dd/**/*.js'
         ],
