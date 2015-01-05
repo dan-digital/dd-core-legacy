@@ -12,7 +12,7 @@ return array(
 	| the usual Laravel view path has already been registered for you.
 	|
 	*/
-	'paths' => array(base_path().'\dist\views', __DIR__.'/../views'),
+	'paths' => array(__DIR__.'/../views.min', __DIR__.'/../views'),
 
 	/*
 	|--------------------------------------------------------------------------
