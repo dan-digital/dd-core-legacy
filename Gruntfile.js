@@ -55,12 +55,28 @@ module.exports = function(grunt) {
       }
     },
 
+    sass: {
+      dd: {
+        files: {
+          '<%= config.dev %>/css/dd.css' : 'styles/dd/main.scss'
+        }
+      }
+    },
+
+    autoprefixer: {
+      all: {
+        src: '<%= config.dev %>/css/**/*.css'
+      }
+    },
+
   });
 
   grunt.registerTask('dev', [
     'wiredep',
     'html2js',
     'concat',
+    'sass',
+    'autoprefixer',
     'watch'
   ]);
 
