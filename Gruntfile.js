@@ -3,11 +3,14 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   var config = {
-    app: 'app',
     dev: 'public/.dev',
+    dist: 'public',
     views: 'app/views',
-    includes: 'app/views/includes',
-    layouts: 'app/views/layouts'
+    views_dist: 'app/views.min',
+    useminViews: [
+      'includes/admin/script-tags.blade.php',
+      'includes/admin/style-tags.blade.php'
+    ]
   };
 
   grunt.initConfig({
@@ -18,27 +21,9 @@ module.exports = function(grunt) {
       dd: {
         ignorePath: /^[\.\/]+\/public/,
         src: [
-          '<%= config.includes %>/admin/script-tags.blade.php',
-          '<%= config.includes %>/admin/style-tags.blade.php'
+          '<%= config.views %>/includes/admin/script-tags.blade.php',
+          '<%= config.views %>/includes/admin/style-tags.blade.php'
         ]
-      }
-    },
-    
-    watch: {
-      options: {
-        livereload: true,
-        spawn: false
-      },
-      views: {
-        files: ['<%= config.views %>/**']
-      },
-      sass: {
-        files: ['styles/**/*.scss'],
-        tasks: ['sass', 'autoprefixer']
-      },
-      ddJs: {
-        files: ['scripts/dd/**'],
-        tasks: ['html2js:dd', 'concat:dd']
       }
     },
 
@@ -77,7 +62,77 @@ module.exports = function(grunt) {
       }
     },
 
+    watch: {
+      options: {
+        livereload: true,
+        spawn: false
+      },
+      views: {
+        files: ['<%= config.views %>/**']
+      },
+      sass: {
+        files: ['styles/**/*.scss'],
+        tasks: ['sass', 'autoprefixer']
+      },
+      ddJs: {
+        files: ['scripts/dd/**'],
+        tasks: ['html2js:dd', 'concat:dd']
+      }
+    },
+
+    useminPrepare: {
+      views: {
+        options: {
+          dest: '<%= config.dist %>'
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= config.views %>',
+          src: config.useminViews
+        }]
+      }
+    },
+
+    usemin: {
+      html: '<%= config.views_dist %>/**/*.php'
+    },
+
+    copy: {
+      useminViews: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.views %>',
+          src: config.useminViews,
+          dest: '<%= config.views_dist %>'
+        }]
+      }
+    },
+
+    clean: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: '<%= config.dist %>',
+          src: [
+            'css/build',
+            'js/build'
+          ]
+        },
+        {
+          src: [
+            '<%= config.views_dist %>/*',
+            '!<%= config.views_dist %>/.gitignore'
+          ]
+        }]
+      },
+      tmp: {
+        src: ['.tmp']
+      }
+    }
+
   });
+  
+  grunt.registerTask('default', ['build']);
 
   grunt.registerTask('dev', [
     'wiredep',
@@ -86,6 +141,22 @@ module.exports = function(grunt) {
     'sass',
     'autoprefixer',
     'watch'
+  ]);
+
+  grunt.registerTask('build', [
+    'clean:dist',
+    'wiredep',
+    'html2js',
+    'concat:dd',
+    'sass',
+    'autoprefixer',
+    'useminPrepare',
+    'concat:generated',
+    'uglify:generated',
+    'cssmin:generated',
+    'copy:useminViews',
+    'usemin',
+    'clean:tmp'
   ]);
 
 };

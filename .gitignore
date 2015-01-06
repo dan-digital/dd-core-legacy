@@ -9,3 +9,5 @@ Thumbs.db
 /node_modules
 .sass-cache
 /public/.dev
+/public/css/build
+/public/js/build
