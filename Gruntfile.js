@@ -23,6 +23,9 @@ module.exports = function(grunt) {
         src: [
           '<%= config.views %>/includes/admin/script-tags.blade.php',
           '<%= config.views %>/includes/admin/style-tags.blade.php'
+        ],
+        exclude: [
+          '<%= config.dev %>/bower_components/angular-mocks/angular-mocks.js'
         ]
       }
     },
@@ -45,6 +48,21 @@ module.exports = function(grunt) {
           'scripts/dd/**/*.js'
         ],
         dest: '<%= config.dev %>/js/dd.js'
+      }
+    },
+
+    jasmine: {
+      dd: {
+        src: [
+          '<%= config.dev %>/bower_components/jquery/dist/jquery.js',
+          '<%= config.dev %>/bower_components/angular/angular.js',
+          '<%= config.dev %>/bower_components/angular-mocks/angular-mocks.js',
+          '<%= config.dev %>/js/dd-templates.js',
+          '<%= config.dev %>/js/dd.js'
+        ],
+        options: {
+          specs: 'specs/**/*.spec.js'
+        }
       }
     },
 
@@ -158,5 +176,7 @@ module.exports = function(grunt) {
     'usemin',
     'clean:tmp'
   ]);
+
+  grunt.registerTask('test', ['html2js', 'concat', 'jasmine']);
 
 };
