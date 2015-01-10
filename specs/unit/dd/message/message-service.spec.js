@@ -18,7 +18,7 @@ describe('ddMessageService', function () {
 		expect(ddMessageService.isHidden).toEqual(true);
 	});
 
-	it('should contain a default delay time of at lest half a second', function () {
+	it('should contain a default delay time of at least half a second', function () {
 
 		expect(ddMessageService.delay).toBeGreaterThan(499);
 	});
