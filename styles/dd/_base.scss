@@ -11,7 +11,7 @@ body {
 }
 
 a {
-	color: $ddGreen;
+	color: $ddGreen !important;
 	text-decoration: none;
 	&:hover {
 		text-decoration: underline;
