@@ -39,7 +39,7 @@ describe('ddMessage', function () {
 		expect(element.hasClass('hidden')).toEqual(false);
 	});
 
-	it('should contain a class with that same name as the type', function () {
+	it('should contain a class with the same name as the type', function () {
 
 		var element = getElement();
 
