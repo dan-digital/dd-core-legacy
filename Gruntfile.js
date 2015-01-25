@@ -95,6 +95,10 @@ module.exports = function(grunt) {
       ddJs: {
         files: ['scripts/dd/**'],
         tasks: ['html2js:dd', 'concat:dd']
+      },
+      bower: {
+        files: ['bower.json'],
+        tasks: ['wiredep']
       }
     },
 
